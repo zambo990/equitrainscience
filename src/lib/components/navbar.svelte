@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { site } from '$lib/consts';
+	import { site, navLinks } from '$lib/consts';
 
 	let menuOpen = $state(false);
 
@@ -17,7 +17,7 @@
 <nav class="navbar" class:menu-open={menuOpen}>
 	<div class="inner">
 		<a href="/" class="brand" onclick={closeMenu}>
-			<img class="brand-logo" src={site.logo} alt={site.name} />
+			<img class="brand-logo" src={site.logo} alt="" />
 			<span class="brand-text">
 				<span class="brand-name">{site.shortName}</span>
 				<span class="brand-tagline">{site.tagline}</span>
@@ -25,18 +25,16 @@
 		</a>
 
 		<ul class="links" class:open={menuOpen}>
-			<li><a href="#chi-sono" onclick={closeMenu}>Chi sono</a></li>
-			<li><a href="#etologia" onclick={closeMenu}>Etologia</a></li>
-			<li><a href="/ippomotricita" onclick={closeMenu}>Ippomotricità</a></li>
-			<li><a href="#divulgazione" onclick={closeMenu}>Divulgazione online</a></li>
-			<li><a href="#contatti" onclick={closeMenu}>Contatti</a></li>
+			{#each navLinks as link (link.href)}
+				<li><a href={link.href} onclick={closeMenu}>{link.label}</a></li>
+			{/each}
 			<li class="cta-item">
-				<a href="#contatti" class="cta" onclick={closeMenu}>Scrivimi</a>
+				<a href="/#contatti" class="cta" onclick={closeMenu}>Scrivimi</a>
 			</li>
 		</ul>
 
 		<div class="actions">
-			<a href="#contatti" class="cta cta-desktop">Scrivimi</a>
+			<a href="/#contatti" class="cta cta-desktop">Scrivimi</a>
 
 			<button
 				class="hamburger"
@@ -58,10 +56,11 @@
 		position: sticky;
 		top: 0;
 		z-index: 50;
-		background: rgba(255, 255, 255, 0.85);
+		height: var(--nav-height);
+		background: rgba(247, 243, 236, 0.85);
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
-		border-bottom: 1px solid var(--color-gray-300);
+		border-bottom: 1px solid var(--color-line);
 	}
 
 	.inner {
@@ -70,7 +69,7 @@
 		align-items: center;
 		column-gap: 24px;
 		max-width: var(--container);
-		height: 76px;
+		height: 100%;
 		margin-inline: auto;
 		padding-inline: 24px;
 	}
@@ -82,7 +81,7 @@
 		display: flex;
 		align-items: center;
 		gap: 12px;
-		color: var(--color-ink);
+		color: var(--color-brand);
 		text-decoration: none;
 	}
 
@@ -90,7 +89,7 @@
 		width: 44px;
 		height: 44px;
 		border-radius: 50%;
-		border: 1px solid var(--color-gray-300);
+		border: 1px solid var(--color-line);
 		object-fit: cover;
 	}
 
@@ -160,7 +159,7 @@
 		bottom: 0;
 		height: 2px;
 		border-radius: 2px;
-		background: var(--color-sage-600);
+		background: var(--color-accent);
 		transform: scaleX(0);
 		transform-origin: left;
 		transition: transform 0.25s ease;
@@ -175,8 +174,8 @@
 		display: inline-block;
 		padding: 10px 22px;
 		border-radius: 999px;
-		background: var(--color-ink);
-		color: #fff;
+		background: var(--color-brand);
+		color: var(--color-surface);
 		font-size: 0.92rem;
 		font-weight: 600;
 		text-decoration: none;
@@ -186,14 +185,14 @@
 
 	.cta:hover,
 	.links a.cta:hover {
-		background: var(--color-sage-600);
+		background: var(--color-brand-strong);
 	}
 
 	.links a:focus-visible,
 	.cta:focus-visible,
 	.brand:focus-visible,
 	.hamburger:focus-visible {
-		outline: 2px solid var(--color-sage-400);
+		outline: 2px solid var(--color-accent);
 		outline-offset: 4px;
 		border-radius: 6px;
 	}
@@ -208,17 +207,17 @@
 		width: 44px;
 		height: 44px;
 		padding: 0;
-		border: 1px solid var(--color-gray-300);
+		border: 1px solid var(--color-line);
 		border-radius: 50%;
-		background: #fff;
+		background: var(--color-surface);
 		color: var(--color-ink);
 		cursor: pointer;
 		transition: background 0.2s ease, border-color 0.2s ease;
 	}
 
 	.hamburger:hover {
-		background: var(--color-sage-100);
-		border-color: var(--color-sage-200);
+		background: var(--color-brand-tint);
+		border-color: var(--color-brand-tint);
 	}
 
 	.bar {
@@ -245,7 +244,7 @@
 	/* ---------- Mobile ---------- */
 	@media (max-width: 960px) {
 		.navbar.menu-open {
-			background: #fff;
+			background: var(--color-bg);
 		}
 
 		.inner {
@@ -267,8 +266,8 @@
 			align-items: stretch;
 			gap: 0;
 			padding: 8px 24px 24px;
-			background: #fff;
-			border-bottom: 1px solid var(--color-gray-300);
+			background: var(--color-bg);
+			border-bottom: 1px solid var(--color-line);
 			box-shadow: 0 24px 40px rgba(23, 23, 15, 0.08);
 			opacity: 0;
 			visibility: hidden;
@@ -283,7 +282,7 @@
 		}
 
 		.links li:not(.cta-item) {
-			border-bottom: 1px solid var(--color-gray-100);
+			border-bottom: 1px solid var(--color-line-soft);
 		}
 
 		.links a {

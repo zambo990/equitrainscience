@@ -1,28 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap');
-
 :root {
-  /* Palette (ispirata alla brand board del template: bianco puro,
-     verde botanico chiaro, grigio tenue, nero pieno — qui il verde
-     è spostato su una tonalità più "prato/campagna" per l'ambito
-     equestre) */
-  --color-bg: #ffffff;
-  --color-sage-100: #f2f6e6;
-  --color-sage-200: #e6edc9;
-  --color-sage-400: #b9c98a;
-  --color-sage-600: #7c8f52;
-  --color-gray-100: #f3f3f1;
-  --color-gray-300: #e3e2dd;
-  --color-ink: #17170f;
-  --color-ink-soft: #55564a;
-  --color-cream: #faf9f4;
+  /* Palette "prato e argilla": brand e brand-soft sono i due colori del logo */
+
+  /* Superfici */
+  --color-bg: #f7f3ec;
+  --color-surface: #ffffff;
+  --color-sand: #ece4d6;
+  --color-line: #e2d9c9;
+  --color-line-soft: #eee8dd;
+
+  /* Brand */
+  --color-brand: #4a523a;
+  --color-brand-strong: #363c2a;
+  --color-brand-soft: #8f8b72;
+  --color-brand-tint: #e4e6d6;
+
+  /* Accento: solo per enfasi (parole chiave, hover), mai per grandi superfici */
+  --color-accent: #b5643f;
+  --color-accent-strong: #94502f;
+
+  /* Testo */
+  --color-ink: #1f1d18;
+  --color-ink-soft: #5c5850;
 
   --font-display: 'Fraunces', serif;
   --font-body: 'Manrope', system-ui, sans-serif;
 
   --radius-lg: 28px;
   --radius-md: 18px;
-  --radius-sm: 10px;
   --container: 1180px;
+
+  /* Altezza totale della navbar sticky (bordo compreso) */
+  --nav-height: 77px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* I link #ancora si fermano sotto la navbar invece che dietro */
+html {
+  scroll-padding-top: var(--nav-height);
 }
 
 body {
@@ -30,4 +49,77 @@ body {
   margin: 0;
   background: var(--color-bg);
   color: var(--color-ink);
+}
+
+/* ---------- Elementi condivisi tra le sezioni ---------- */
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.section-title {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 6vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--color-brand);
+  color: var(--color-surface);
+}
+
+.btn-primary:hover {
+  background: var(--color-brand-strong);
+}
+
+.btn-outline {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.btn-outline:hover {
+  background: var(--color-brand-tint);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
 }
