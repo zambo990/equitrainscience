@@ -88,7 +88,8 @@
 		padding-inline: 24px;
 	}
 
-	a {
+	/* I bottoni hanno i loro colori (in app.css): questa regola li sovrascriverebbe */
+	a:not(.btn) {
 		color: inherit;
 	}
 
