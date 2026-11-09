@@ -1,5 +1,9 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { site, navLinks } from '$lib/consts';
+
+	// Indirizzo della home, compreso il percorso base (es. /nome-repo/ su GitHub Pages)
+	const home = resolve('/');
 
 	let menuOpen = $state(false);
 
@@ -16,7 +20,7 @@
 
 <nav class="navbar" class:menu-open={menuOpen}>
 	<div class="inner">
-		<a href="/" class="brand" onclick={closeMenu}>
+		<a href={home} class="brand" onclick={closeMenu}>
 			<img class="brand-logo" src={site.logo} alt="" />
 			<span class="brand-text">
 				<span class="brand-name">{site.shortName}</span>
@@ -25,16 +29,16 @@
 		</a>
 
 		<ul class="links" class:open={menuOpen}>
-			{#each navLinks as link (link.href)}
-				<li><a href={link.href} onclick={closeMenu}>{link.label}</a></li>
+			{#each navLinks as link (link.id)}
+				<li><a href="{home}#{link.id}" onclick={closeMenu}>{link.label}</a></li>
 			{/each}
 			<li class="cta-item">
-				<a href="/#contatti" class="cta" onclick={closeMenu}>Scrivimi</a>
+				<a href="{home}#contatti" class="cta" onclick={closeMenu}>Scrivimi</a>
 			</li>
 		</ul>
 
 		<div class="actions">
-			<a href="/#contatti" class="cta cta-desktop">Scrivimi</a>
+			<a href="{home}#contatti" class="cta cta-desktop">Scrivimi</a>
 
 			<button
 				class="hamburger"

@@ -14,13 +14,14 @@ export const site = {
 
 export type NavLink = {
 	label: string;
-	href: string;
+	/** id della sezione nella home: il link completo lo costruiscono i componenti */
+	id: string;
 };
 
 export const navLinks: NavLink[] = [
-	{ label: 'Chi sono', href: '/#chi-sono' },
-	{ label: 'Etologia', href: '/#etologia' },
-	{ label: 'Divulgazione online', href: '/#divulgazione' },
-	{ label: 'Ippomotricità', href: '/#ippomotricita' },
-	{ label: 'Contatti', href: '/#contatti' }
+	{ label: 'Chi sono', id: 'chi-sono' },
+	{ label: 'Etologia', id: 'etologia' },
+	{ label: 'Divulgazione online', id: 'divulgazione' },
+	{ label: 'Ippomotricità', id: 'ippomotricita' },
+	{ label: 'Contatti', id: 'contatti' }
 ];

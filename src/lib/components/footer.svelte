@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { site, navLinks } from '$lib/consts';
+
+	const home = resolve('/');
 
 	// La pagina è generata alla build: l'effetto, che gira solo nel browser,
 	// aggiorna l'anno a quello corrente anche se la build è di un anno fa
@@ -31,7 +34,7 @@
 
 		<div class="grid">
 			<div class="brand">
-				<a href="/" class="brand-link">
+				<a href={home} class="brand-link">
 					<img class="brand-logo" src={site.logo} alt="" />
 					<span class="brand-text">
 						<span class="brand-name">{site.shortName}</span>
@@ -47,8 +50,8 @@
 			<nav class="col" aria-label="Sezioni del sito">
 				<h3>Sito</h3>
 				<ul>
-					{#each navLinks as link (link.href)}
-						<li><a href={link.href}>{link.label}</a></li>
+					{#each navLinks as link (link.id)}
+						<li><a href="{home}#{link.id}">{link.label}</a></li>
 					{/each}
 				</ul>
 			</nav>

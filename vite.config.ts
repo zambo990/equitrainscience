@@ -13,7 +13,14 @@ export default defineConfig({
 
 			// Sito statico: la build produce solo file HTML/CSS/JS in build/.
 			// 404.html viene servita dagli hosting statici per gli URL inesistenti.
-			adapter: adapter({ fallback: '404.html' })
+			adapter: adapter({ fallback: '404.html' }),
+
+			paths: {
+				// Su GitHub Pages il sito vive in /nome-repository: il workflow imposta
+				// BASE_PATH. In locale è vuota e il sito resta alla radice.
+				base: (process.env.BASE_PATH ?? '') as '' | `/${string}`,
+				relative: false
+			}
 		})
 	]
 });
