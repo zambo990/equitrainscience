@@ -2,7 +2,7 @@ import logoImg from '$lib/assets/logo.jpg';
 
 export const site = {
 	// Indirizzo pubblico del sito, senza "/" finale: serve per l'anteprima social
-	url: 'https://dominio-da-definire.it',
+	url: 'https://zambo990.github.io/equitrainscience',
 	name: 'eli. — Etologa Equina',
 	shortName: 'eli.',
 	tagline: 'Etologa equina',
